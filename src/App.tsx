@@ -1,15 +1,17 @@
 
+import { useState } from 'react';
 import {DashBoard} from './pages/Dashboard'
 import { Signin } from './pages/Signin';
 import { Signup } from './pages/Signup'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 function App() {
+  const [isSignedin, setIsSignedin] = useState(true);
   return (
   <>
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Signup/>}></Route>
-      <Route path="/signup" element={<Signup/>}></Route>
+    <Route path="/" element={isSignedin ? <DashBoard /> : <Signup />} />
+    <Route path="/signup" element={<Signup/>}></Route>
       <Route path="/dashboard" element={<DashBoard/>}></Route>
       <Route path="/signin" element={<Signin/>}></Route>
     </Routes>
